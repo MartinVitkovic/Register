@@ -151,7 +151,7 @@ public class ConsoleUI {
 		System.out.println("Enter ID: ");
 		int index = Integer.parseInt(readLine());
 		// Person person = register.getPerson(index - 1);
-		for (int i = 0; i < register.getSize(); i++) {
+		for (int i = 0; i < register.getCount(); i++) {
 			if (index == i + 1) {
 				System.out.println(register.getPerson(i));
 			}
