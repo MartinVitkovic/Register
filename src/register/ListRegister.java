@@ -64,11 +64,6 @@ public class ListRegister implements Register {
 
 	@Override
 	public void removePerson(Person person) {
-		// for (Person personInRegister : persons) {
-		// if (personInRegister.equals(person)) {
-		// persons.remove(person);
-		// }
-		// }
 
 		while (iterator.hasNext()) {
 			if (iterator.next().equals(person)) {

@@ -33,7 +33,7 @@ public class ConsoleUI {
 		this.register = register;
 	}
 
-	public void run() {
+	public void run() throws PhoneNumberFormatException {
 		while (true) {
 			switch (showMenu()) {
 			case PRINT:
@@ -90,7 +90,7 @@ public class ConsoleUI {
 		}
 	}
 
-	private void addToRegister() {
+	private void addToRegister() throws PhoneNumberFormatException {
 		System.out.println("Enter Name: ");
 		String name = readLine();
 		System.out.println("Enter Phone Number: ");
