@@ -1,5 +1,11 @@
 package register;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -8,6 +14,7 @@ import java.util.List;
 public class ListRegister implements Register {
 
 	private List<Person> persons = new ArrayList<>();
+	private static String FILE_NAME = "register.bin";
 
 	public ListRegister() {
 		// TODO Auto-generated constructor stub
@@ -71,12 +78,30 @@ public class ListRegister implements Register {
 		}
 	}
 
-	public void deleteAllBy(char firstLetter) {	
+	public void deleteAllBy(char firstLetter) {
 		Iterator<Person> iterator = persons.iterator();
 		while (iterator.hasNext()) {
 			if (iterator.next().getName().startsWith(Character.toString(firstLetter))) {
 				iterator.remove();
 			}
+		}
+	}
+
+	@Override
+	public void load() {
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
+			this.persons = (List<Person>) ois.readObject();
+		} catch (Exception ex) {
+			System.err.println("Error " + ex.getMessage());
+		}
+	}
+
+	@Override
+	public void save() {
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
+			oos.writeObject(persons);
+		} catch (IOException ex) {
+			System.err.println("Error " + ex.getMessage());
 		}
 	}
 

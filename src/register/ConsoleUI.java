@@ -58,6 +58,7 @@ public class ConsoleUI {
 				findInRegister();
 				break;
 			case EXIT:
+				register.save();
 				return;
 			}
 		}

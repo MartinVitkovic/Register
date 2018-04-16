@@ -1,9 +1,13 @@
 package register;
 
+import java.io.Serializable;
+
 /**
  * register.Person.
  */
-public class Person implements Comparable<Person>{
+public class Person implements Comparable<Person>, Serializable {
+	//private static final long serialVersionUID = 1L;
+
 	/** Name of this person. */
 	private String name;
 
@@ -81,9 +85,9 @@ public class Person implements Comparable<Person>{
 				return false;
 			}
 		}
-//		if (phoneNumber.length() != 10) {
-//			throw new PhoneNumberFormatException("Kratke cislo");
-//		}
+		// if (phoneNumber.length() != 10) {
+		// throw new PhoneNumberFormatException("Kratke cislo");
+		// }
 		return true;
 	}
 
@@ -101,5 +105,4 @@ public class Person implements Comparable<Person>{
 		return this.getName().compareTo(p.getName());
 	}
 
-	
 }

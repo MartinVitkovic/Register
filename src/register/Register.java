@@ -1,6 +1,6 @@
 package register;
 
-public interface Register {
+public interface Register{
 
 	/**
 	 * Returns the number of persons in this register.
@@ -56,5 +56,9 @@ public interface Register {
 	 *            person to remove
 	 */
 	void removePerson(Person person);
+	
+	void load();
+	
+	void save();
 
 }

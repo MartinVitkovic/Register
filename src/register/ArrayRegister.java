@@ -68,7 +68,6 @@ public class ArrayRegister implements Register {
 		count++;
 	}
 
-	// TODO: Implement the method findPersonByName
 	/* (non-Javadoc)
 	 * @see register.Register#findPersonByName(java.lang.String)
 	 */
@@ -83,7 +82,6 @@ public class ArrayRegister implements Register {
 		return null;
 	}
 
-	// TODO: Implement the method findPersonByPhoneNumber
 	/* (non-Javadoc)
 	 * @see register.Register#findPersonByPhoneNumber(java.lang.String)
 	 */
@@ -98,7 +96,6 @@ public class ArrayRegister implements Register {
 		return null;
 	}
 
-	// TODO: Implement the method removePerson
 	/* (non-Javadoc)
 	 * @see register.Register#removePerson(register.Person)
 	 */
@@ -110,5 +107,17 @@ public class ArrayRegister implements Register {
 			}
 		}
 		count--;
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub
+		
 	}
 }
