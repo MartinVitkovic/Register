@@ -3,6 +3,8 @@ package register;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * User interface of the application.
@@ -27,6 +29,10 @@ public class ConsoleUI {
 
 	private enum OptionFind {
 		ID, NAME, NUMBER, BACK
+	}
+
+	private enum OptionRemove {
+		ID, FIRSTLETTER, BACK
 	}
 
 	public ConsoleUI(Register register) {
@@ -60,7 +66,6 @@ public class ConsoleUI {
 	private String readLine() {
 		// In JDK 6.0 and above Console class can be used
 		// return System.console().readLine();
-
 		try {
 			return input.readLine();
 		} catch (IOException e) {
@@ -68,6 +73,7 @@ public class ConsoleUI {
 		}
 	}
 
+	
 	private Option showMenu() {
 		System.out.println("Menu.");
 		for (Option option : Option.values()) {
@@ -90,6 +96,7 @@ public class ConsoleUI {
 		}
 	}
 
+	
 	private void addToRegister() throws PhoneNumberFormatException {
 		System.out.println("Enter Name: ");
 		String name = readLine();
@@ -99,12 +106,73 @@ public class ConsoleUI {
 		register.addPerson(new Person(name, phoneNumber));
 	}
 
-	// TODO: Implement the method updateRegister
+	//method updateRegister
 	private void updateRegister() {
-		throw new UnsupportedOperationException("Method updateRegister not yet implemented");
+		System.out.println("Enter index: ");
+		int index = Integer.parseInt(readLine());
+		Person person = register.getPerson(index - 1);
+		System.out.println("New Name: ");
+		person.setName(readLine());
+		System.out.println("New Phone Number: ");
+		try {
+			person.setPhoneNumber(readLine());
+		} catch (PhoneNumberFormatException e) {
+			e.printStackTrace();
+		}
 	}
 
-	// TODO: Implement the method findInRegister
+	//method remove from register
+	private void removeFromRegister() {
+		while (true) {
+			switch (showRemoveMenu()) {
+			case ID:
+				removeFromRegisterByID();
+				break;
+			case FIRSTLETTER:
+				removeFromRegisterByFirstLetter();
+				break;
+			case BACK:
+				return;
+			}
+		}
+	}
+
+	private OptionRemove showRemoveMenu() {
+		System.out.println("Choose option: ");
+		for (OptionRemove option : OptionRemove.values()) {
+			System.out.printf("%d. %s%n", option.ordinal() + 1, option);
+		}
+		System.out.println("-----------------------------------------------");
+
+		int selection = -1;
+		do {
+			System.out.println("OptionFind: ");
+			selection = Integer.parseInt(readLine());
+		} while (selection <= 0 || selection > OptionRemove.values().length);
+
+		return OptionRemove.values()[selection - 1];
+	}
+
+	private void removeFromRegisterByID() {
+		System.out.println("Enter index: ");
+		int index = Integer.parseInt(readLine());
+		Person person = register.getPerson(index - 1);
+		register.removePerson(person);
+	}
+
+	private void removeFromRegisterByFirstLetter() {
+		System.out.println("Enter firstLetter: ");
+		char firstLetter = readLine().charAt(0);
+		if (register instanceof ListRegister) {
+			((ListRegister) register).deleteAllBy(firstLetter);
+		} else {
+			System.err.println("Register isn't list");
+		}
+	}
+	//end of remove from register
+
+
+	//method findInRegister
 	private void findInRegister() {
 		while (true) {
 			switch (showFindMenu()) {
@@ -121,14 +189,6 @@ public class ConsoleUI {
 				return;
 			}
 		}
-
-	}
-
-	private void removeFromRegister() {
-		System.out.println("Enter index: ");
-		int index = Integer.parseInt(readLine());
-		Person person = register.getPerson(index - 1);
-		register.removePerson(person);
 	}
 
 	private OptionFind showFindMenu() {
@@ -178,7 +238,7 @@ public class ConsoleUI {
 			// TODO: handle exception
 			System.out.println("Cislo sa nenachadza v registri");
 		}
-
 	}
+	//end of find in register
 
 }

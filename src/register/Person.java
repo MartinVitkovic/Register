@@ -3,7 +3,7 @@ package register;
 /**
  * register.Person.
  */
-public class Person {
+public class Person implements Comparable<Person>{
 	/** Name of this person. */
 	private String name;
 
@@ -95,4 +95,11 @@ public class Person {
 	public String toString() {
 		return name + " (" + phoneNumber + ")";
 	}
+
+	@Override
+	public int compareTo(Person p) {
+		return this.getName().compareTo(p.getName());
+	}
+
+	
 }

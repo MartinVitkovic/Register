@@ -1,17 +1,18 @@
 package register;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 public class ListRegister implements Register {
 
 	private List<Person> persons = new ArrayList<>();
-	
+
 	public ListRegister() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	public int getCount() {
 		return persons.size();
@@ -34,8 +35,8 @@ public class ListRegister implements Register {
 				return;
 			}
 		}
-
 		persons.add(person);
+		Collections.sort(persons);
 	}
 
 	@Override
@@ -60,16 +61,22 @@ public class ListRegister implements Register {
 		return null;
 	}
 
-	Iterator<Person> iterator = persons.iterator();
-
 	@Override
 	public void removePerson(Person person) {
-
+		Iterator<Person> iterator = persons.iterator();
 		while (iterator.hasNext()) {
 			if (iterator.next().equals(person)) {
 				iterator.remove();
 			}
+		}
+	}
 
+	public void deleteAllBy(char firstLetter) {	
+		Iterator<Person> iterator = persons.iterator();
+		while (iterator.hasNext()) {
+			if (iterator.next().getName().startsWith(Character.toString(firstLetter))) {
+				iterator.remove();
+			}
 		}
 	}
 
