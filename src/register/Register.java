@@ -1,5 +1,7 @@
 package register;
 
+import java.sql.SQLException;
+
 public interface Register{
 
 	/**
@@ -23,6 +25,7 @@ public interface Register{
 	 * 
 	 * @param person
 	 *            person to append to this register
+	 * 
 	 */
 	void addPerson(Person person);
 
