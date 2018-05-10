@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * register.Person.
  */
-public class Person implements Comparable<Person>, Serializable {
+public class Person implements Comparable<Person> {
 	//private static final long serialVersionUID = 1L;
 
 	/** Name of this person. */
@@ -85,9 +85,6 @@ public class Person implements Comparable<Person>, Serializable {
 				return false;
 			}
 		}
-		// if (phoneNumber.length() != 10) {
-		// throw new PhoneNumberFormatException("Kratke cislo");
-		// }
 		return true;
 	}
 

@@ -41,7 +41,6 @@ public class JDBCRegister implements Register {
 
 	@Override
 	public Person getPerson(int index) {
-
 		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement statement = connection.prepareStatement(SELECT_GET_PERSON);) {			
 			statement.setInt(1, index+1);
@@ -71,7 +70,6 @@ public class JDBCRegister implements Register {
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		}
-
 	}
 
 	@Override
